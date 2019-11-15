@@ -31,24 +31,27 @@ public class Graph extends JFrame {
             g.fillRect(20,0, 3, (height - 20));
             g.fillRect(20,(height - 23), (width - 20), 3);
             double y_max = 0;
+            
+            //find max value in values array used in dividing the graph
             for(int x = 0; x < values.size(); x++){
                 if(values.get(x) > y_max){
                     y_max = values.get(x);
                 }
             }
-            System.out.println(y_max);
+            
+            //calculate points assuming a frame of 20 on all sides of graph
             for (int x = 0; x < values.size() - 1; x++) {
                 double xPoint1 = ((x * (width - 40)) / (double)(values.size() - 1)) + 20;
                 double yPoint1 = (values.get(x) / y_max) * (height - 40) + 20;
                 double xPoint2 = (((x + 1) * (width - 40)) / (double)(values.size() - 1)) + 20;
                 double yPoint2 = (values.get(x + 1) / y_max) * (height - 40) + 20;
-                System.out.printf("(%s, %s), (%s, %s) ", xPoint1, yPoint1, xPoint2, yPoint2);
                 g2.draw(new Line2D.Double(xPoint1, yPoint1 ,xPoint2, yPoint2));
             }
+            
             g.setColor(Color.BLACK);
         }
     }
-
+    //used only for testing graph
     public static void main(String[] args) {
         ArrayList<Double> list = new ArrayList<>();
         list.add(20.0);
